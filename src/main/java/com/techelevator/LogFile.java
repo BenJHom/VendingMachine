@@ -14,7 +14,7 @@ public class LogFile {
 
     public LogFile(Money money) {
         logFile = new File("Log.txt");
-        money = new Money(this, inventory);
+        this.money = new Money(this, inventory);
     }
 
     public String formatMoney(int monetaryAmount){
@@ -49,7 +49,8 @@ public class LogFile {
 
     private void logWrite(String logString) {
         try (PrintWriter fileLogger = new PrintWriter(new FileWriter(logFile,true))){
-            fileLogger.append(logString);
+            fileLogger.append(logString + "\n");
+            System.out.println();
         }catch(Exception e){
             System.out.println("Not a valid location");
         }
