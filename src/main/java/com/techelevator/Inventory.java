@@ -57,7 +57,7 @@ public class Inventory {
         snackList.put(fileElements[0], newSnack);
     }
 
-    private String dispenseSnack(String location)
+    public String dispenseSnack(String location)
     {
         if(snackList.containsKey(location))
         {

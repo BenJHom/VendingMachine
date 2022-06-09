@@ -4,8 +4,12 @@ public class Money {
     private int currentAmount = 0;
     private int[] changeInCoins = new int[3];
     private int[] coinValues = {25, 10, 5};
+    private LogFile logFile;
+    private Inventory inventory;
 
-    public Money(){
+    public Money(LogFile logFile, Inventory inventory){
+        this.logFile = logFile;
+        this.inventory = inventory;
     }
 
     public int getCurrentAmount() {
@@ -15,14 +19,14 @@ public class Money {
     public int addMoney(int userMoney) {
         int userMoneyInPennies = 100 * userMoney;
         this.currentAmount += userMoneyInPennies;
-        logFile.addFeedMoney(userMoneyInPennies);
+        logFile.logFeedMoney(userMoneyInPennies);
         return currentAmount;
     }
 
-    public int subtractMoney(int monetaryAmount, boolean isPurchase){
+    public int subtractMoney(int monetaryAmount, boolean isPurchase, String userKey){
         currentAmount = currentAmount - monetaryAmount;
         if(isPurchase){
-            logFile.logPurchase(Snack snack);
+            logFile.logPurchase(inventory.getSnackList().get(userKey));
         }else{
             logFile.logChangeMade(monetaryAmount);
         }

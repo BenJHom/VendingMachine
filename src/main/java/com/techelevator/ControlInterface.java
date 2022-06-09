@@ -3,13 +3,14 @@ package com.techelevator;
 import java.util.Scanner;
 
 public class ControlInterface {
-    public Money money = new Money();
+    public LogFile logFile;
     private Scanner keyboard = new Scanner (System.in);
-    LogFile logFile = new LogFile();
     public Inventory inventory = new Inventory();
+    public Money money;
 
     public ControlInterface(){
-
+        logFile = new LogFile(money);
+        money = new Money(logFile,inventory);
     }
 
     private int dataValidatorInt(int upperBound){
@@ -92,15 +93,25 @@ public class ControlInterface {
         purchaseMenu();
     }
 
-    private boolean selectProduct(){
+    private void selectProduct(){
         boolean isPurchase = true;
         printInventoryItems();
-        System.out.print("Enter the item code for the corresponding snack: ");
-        String userKey = keyboard.nextLine();
-        inventory.dispenseSnack(userKey);
-        money.subtractMoney(iventory.getSnackList().get(userKey).getPrice(),isPurchase);
+        String userKey;
+        do {
+            System.out.print("Enter the item code for the corresponding snack: ");
+            userKey = keyboard.nextLine();
+            if (!inventory.getSnackList().containsKey(userKey)){
+                System.out.println("That's not a valid code");
+            }
+            if(!inventory.getSnackList().get(userKey).getAmountLeft()>0){
+                System.out.println("Item out of stock!  Sorry, please select another item.");
+            }
+        }
+        while (!inventory.getSnackList().containsKey(userKey) || !inventory.getSnackList().get(userKey).getAmountLeft()>0);
+        System.out.println(inventory.dispenseSnack(userKey).getMessage());
+        money.subtractMoney(inventory.getSnackList().get(userKey).getPrice(),isPurchase, userKey);
 
-        return inventory.dispenseSnack();
+        purchaseMenu();
     }
 
     private void finishTransaction(){
