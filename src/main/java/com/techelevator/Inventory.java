@@ -11,12 +11,13 @@ public class Inventory {
 
     public Inventory()
     {
-        snackList = new HashMap<>();
+        snackList = new LinkedHashMap<>();
         importSnacksFromList();
     }
 
     public Map<String, Snack> getSnackList()
     {
+
         return snackList;
     }
 

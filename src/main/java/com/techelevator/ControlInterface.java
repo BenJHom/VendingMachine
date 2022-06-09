@@ -72,7 +72,7 @@ public class ControlInterface {
         for(String key : keySet)
         {
             double backToDecimal = inventory.getSnackList().get(key).getPrice() / 100.0;
-            System.out.println("Item: "+inventory.getSnackList().get(key).getName()+ " Price: "+backToDecimal);
+            System.out.println("Item Code: "+key+" Item: "+inventory.getSnackList().get(key).getName()+ " Price: "+backToDecimal);
         }
         return true;
     }
