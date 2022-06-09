@@ -57,17 +57,10 @@ public class Inventory {
         snackList.put(fileElements[0], newSnack);
     }
 
-    private String dispenseSnack(String location)
+    public Snack dispenseSnack(String location)
     {
-        if(snackList.containsKey(location))
-        {
-            if(snackList.get(location).getAmountLeft() > 0)
-            {
-                snackList.get(location).setAmountLeft(snackList.get(location).getAmountLeft() - 1);
-                return snackList.get(location).getMessage();
-            }
-            return "Item is unfortunately sold out";
-        }
-        return "Item does not exist";
+        snackList.get(location).setAmountLeft();
+        return snackList.get(location);
+
     }
 }
