@@ -3,9 +3,7 @@ package com.techelevator;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.PrintWriter;
-import java.sql.Date;
 import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
 import java.time.LocalDateTime;
 
 public class LogFile {
@@ -29,12 +27,24 @@ public class LogFile {
         String formattedCurrent = formatMoney(money.getCurrentAmount());
         String formattedFeed = formatMoney(userMoneyInPennies);
         String logOfFeed = dateTime + " FEED MONEY: " + formattedFeed + formattedCurrent;
-        return "";
+        logWrite(logOfFeed);
+        return logOfFeed;
     }
 
-    public String logPurchase(Snack snack){
+    public String logPurchase(Snack snack, String userKey){
         String formattedPrice = formatMoney(snack.getPrice());
         String formattedCurrent = formatMoney(money.getCurrentAmount());
+        String logOfPurchase = dateTime + " " + snack.getName() + " " + userKey + " " + formattedPrice + " " + formattedCurrent;
+        logWrite(logOfPurchase);
+        return logOfPurchase;
+    }
+
+    public String logChangeMade(int monetaryAmount){
+        String formattedChangeGiven = formatMoney(monetaryAmount);
+        String formattedCurrent = formatMoney(money.getCurrentAmount());
+        String logOfChangeMade = dateTime+ " GIVE CHANGE: " + formattedChangeGiven + " " + formattedCurrent;
+        logWrite(logOfChangeMade);
+        return logOfChangeMade;
     }
 
     private void logWrite(String logString) {

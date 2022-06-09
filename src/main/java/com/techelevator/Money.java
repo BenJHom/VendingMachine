@@ -26,7 +26,7 @@ public class Money {
     public int subtractMoney(int monetaryAmount, boolean isPurchase, String userKey){
         currentAmount = currentAmount - monetaryAmount;
         if(isPurchase){
-            logFile.logPurchase(inventory.getSnackList().get(userKey));
+            logFile.logPurchase(inventory.getSnackList().get(userKey), userKey);
         }else{
             logFile.logChangeMade(monetaryAmount);
         }
@@ -41,7 +41,7 @@ public class Money {
             currentAmount = currentAmount%coinValues[i];
         }
 
-        subtractMoney(currentAmount, isPurchase);
+        subtractMoney(currentAmount, isPurchase, "");
 
         return changeInCoins;
     }
