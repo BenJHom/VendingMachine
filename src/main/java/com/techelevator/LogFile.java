@@ -29,7 +29,6 @@ public class LogFile {
         String formattedCurrent = formatMoney(money.getCurrentAmount());
         String formattedFeed = formatMoney(userMoneyInPennies);
         String logOfFeed = dateTime + " FEED MONEY: " + formattedFeed + formattedCurrent;
-        return "";
     }
 
     public String logPurchase(Snack snack){

@@ -11,7 +11,7 @@ public class Inventory {
 
     public Inventory()
     {
-        snackList = new HashMap<String, Snack>();
+        snackList = new HashMap<>();
         importSnacksFromList();
     }
 

@@ -56,9 +56,11 @@ public class ControlInterface {
         if (userInput == 1) {
             feedMoney(money);
         }else if(userInput == 2) {
-            purchaseMenu();
+            //purchaseMenu();
+            selectProduct();
         }else {
-            mainMenuDisplay(true);
+            //mainMenuDisplay(true);
+            finishTransaction();
         }
     }
 
@@ -109,11 +111,11 @@ public class ControlInterface {
             if (!inventory.getSnackList().containsKey(userKey)){
                 System.out.println("That's not a valid code");
             }
-            if(!inventory.getSnackList().get(userKey).getAmountLeft()>0){
+            if(!(inventory.getSnackList().get(userKey).getAmountLeft()>0)){
                 System.out.println("Item out of stock!  Sorry, please select another item.");
             }
         }
-        while (!inventory.getSnackList().containsKey(userKey) || !inventory.getSnackList().get(userKey).getAmountLeft()>0);
+        while (!inventory.getSnackList().containsKey(userKey) || !(inventory.getSnackList().get(userKey).getAmountLeft()>0));
         System.out.println(inventory.dispenseSnack(userKey).getMessage());
         money.subtractMoney(inventory.getSnackList().get(userKey).getPrice(),isPurchase, userKey);
 
