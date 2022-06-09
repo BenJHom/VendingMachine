@@ -1,6 +1,7 @@
 package com.techelevator;
 
 import java.util.Scanner;
+import java.util.Set;
 
 public class ControlInterface {
     public LogFile logFile;
@@ -65,7 +66,12 @@ public class ControlInterface {
 
     private boolean printInventoryItems(){
         System.out.println("At Inventory Items");
-
+        Set<String> keySet = inventory.getSnackList().keySet();
+        for(String key : keySet)
+        {
+            double backToDecimal = inventory.getSnackList().get(key).getPrice() / 100.0;
+            System.out.println("Item: "+inventory.getSnackList().get(key).getName()+ " Price: "+backToDecimal);
+        }
         return true;
     }
 
