@@ -56,9 +56,11 @@ public class ControlInterface {
         if (userInput == 1) {
             feedMoney(money);
         }else if(userInput == 2) {
-            purchaseMenu();
+            //purchaseMenu();
+            selectProduct();
         }else {
-            mainMenuDisplay(true);
+            //mainMenuDisplay(true);
+            finishTransaction();
         }
     }
 
