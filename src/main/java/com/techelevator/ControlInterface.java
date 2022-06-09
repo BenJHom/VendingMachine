@@ -3,8 +3,10 @@ package com.techelevator;
 import java.util.Scanner;
 
 public class ControlInterface {
-    Money money = new Money();
+    public Money money = new Money();
     private Scanner keyboard = new Scanner (System.in);
+    LogFile logFile = new LogFile();
+    public Inventory inventory = new Inventory();
 
     public ControlInterface(){
 
@@ -50,7 +52,7 @@ public class ControlInterface {
 
     private void userSelectorPurchaseMenu(int userInput){
         if (userInput == 1) {
-            feedMoney();
+            feedMoney(money);
         }else if(userInput == 2) {
             purchaseMenu();
         }else {
@@ -67,7 +69,7 @@ public class ControlInterface {
     }
 
     private void purchaseMenu(){
-        System.out.println("You have " + money.getCurrentMoney());
+        System.out.println("You have " + money.getCurrentAmount());
         System.out.println("(1) Feed Money");
         System.out.println("(2) Select Product");
         System.out.println("(3) Finish Transaction");
@@ -83,7 +85,7 @@ public class ControlInterface {
     }
 
     //PURCHASE MENU POST SELECTOR
-    private void feedMoney(){
+    private void feedMoney(Money money){
         System.out.println("Please enter a monetary amount: ");
         int userMoney = dataValidatorInt(Integer.MAX_VALUE/100);
         money.addMoney(userMoney);
@@ -91,9 +93,12 @@ public class ControlInterface {
     }
 
     private boolean selectProduct(){
+        boolean isPurchase = true;
         printInventoryItems();
         System.out.print("Enter the item code for the corresponding snack: ");
         String userKey = keyboard.nextLine();
+        inventory.dispenseSnack(userKey);
+        money.subtractMoney(iventory.getSnackList().get(userKey).getPrice(),isPurchase);
 
         return inventory.dispenseSnack();
     }
@@ -103,7 +108,7 @@ public class ControlInterface {
         money.makeChange();
         System.out.println("Your change: ");
         for (int i = 0; i< coins.length; i++){
-            System.out.println(money.getChangeInCoins[i] + coins[i]);
+            System.out.println(money.getChangeInCoins()[i] + coins[i]);
         }
         mainMenuDisplay(true);
     }
