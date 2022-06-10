@@ -59,10 +59,8 @@ public class ControlInterface {
         if (userInput == 1) {
             feedMoney(money);
         }else if(userInput == 2) {
-            //purchaseMenu();
             selectProduct();
         }else {
-            //mainMenuDisplay(true);
             finishTransaction();
         }
     }
@@ -86,7 +84,7 @@ public class ControlInterface {
     }
 
     private void purchaseMenu(){
-        System.out.println("You have " + money.getCurrentAmount());
+        System.out.println("You have " + logFile.formatMoney(money.getCurrentAmount()));
         System.out.println("(1) Feed Money");
         System.out.println("(2) Select Product");
         System.out.println("(3) Finish Transaction");

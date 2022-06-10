@@ -1,7 +1,7 @@
 package com.techelevator;
 
 public class Money {
-    private int currentAmount = 0;
+    private int currentAmount;
     private int[] changeInCoins = new int[3];
     private int[] coinValues = {25, 10, 5};
     private LogFile logFile;
@@ -18,7 +18,7 @@ public class Money {
 
     public int addMoney(int userMoney) {
         int userMoneyInPennies = 100 * userMoney;
-        this.currentAmount += userMoneyInPennies;
+        this.currentAmount = currentAmount + userMoneyInPennies;
         logFile.logFeedMoney(userMoneyInPennies);
         return currentAmount;
     }
@@ -35,11 +35,11 @@ public class Money {
 
     public int[] getChangeInCoins() {
         boolean isPurchase = false;
+        int modifiedCurrent = currentAmount;
 
         for (int i = 0; i < changeInCoins.length; i++){
-            changeInCoins[i] = currentAmount/coinValues[i];
-            currentAmount = currentAmount%coinValues[i];
-            System.out.println(currentAmount);
+            changeInCoins[i] = modifiedCurrent/coinValues[i];
+            modifiedCurrent = currentAmount%coinValues[i];
         }
 
         subtractMoney(currentAmount, isPurchase, "");

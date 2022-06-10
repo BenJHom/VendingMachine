@@ -16,5 +16,13 @@ public class Application {
         //We should probably not have the file writer be in append mode, since we want the log file cleared after each run
         //issues with mod math for .05
         //added a string variable to the snack class that holds the initial double value
+
+        /*
+        Ethan, thank you for addressing that bug.  Upon inspection today the log file only produces 0 as given change.
+        I addressed it to write the appropriate value as well as changing format money to always produces a ones cents place. I also fixed issues
+        with x.05 values. Money formatting issues should be resolved but yesterday I seem to have created
+        a problem with calling logFile calling .getCurrentMoney as currentAmount is always 0.
+        I think it has to do with how I instantiated money in our logFile object.
+         */
     }
 }

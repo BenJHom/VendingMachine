@@ -20,13 +20,14 @@ public class LogFile {
     public String formatMoney(int monetaryAmount){
         int ones = monetaryAmount/100;
         int cents = monetaryAmount%100;
-        return ones+"."+cents;
+        int centsOnes = monetaryAmount%10;
+        return "$" + ones + "." + (cents < 10 ? 0 : "") + cents;
     }
 
     public String logFeedMoney(int userMoneyInPennies){
         String formattedCurrent = formatMoney(money.getCurrentAmount());
         String formattedFeed = formatMoney(userMoneyInPennies);
-        String logOfFeed = dateTime + " FEED MONEY: " + formattedFeed + formattedCurrent;
+        String logOfFeed = dateTime + " FEED MONEY: " + formattedFeed + " " + formattedCurrent;
         logWrite(logOfFeed);
         return logOfFeed;
     }
