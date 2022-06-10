@@ -39,6 +39,7 @@ public class Money {
         for (int i = 0; i < changeInCoins.length; i++){
             changeInCoins[i] = currentAmount/coinValues[i];
             currentAmount = currentAmount%coinValues[i];
+            System.out.println(currentAmount);
         }
 
         subtractMoney(currentAmount, isPurchase, "");

@@ -71,8 +71,11 @@ public class ControlInterface {
         Set<String> keySet = inventory.getSnackList().keySet();
         for(String key : keySet)
         {
-            double backToDecimal = inventory.getSnackList().get(key).getPrice() / 100.0;
-            System.out.println("Item Code: "+key+" Item: "+inventory.getSnackList().get(key).getName()+ " Price: "+backToDecimal);
+            if(inventory.getSnackList().get(key).getAmountLeft() > 0) {
+                int priceInDollars = inventory.getSnackList().get(key).getPrice() / 100;
+                int priceInCents = inventory.getSnackList().get(key).getPrice() % 100;
+                System.out.println("Item Code: " + key + " >>> Item: " + inventory.getSnackList().get(key).getName() + " >>> Price: $" + priceInDollars + "." + priceInCents);
+            }
         }
         return true;
     }
@@ -118,16 +121,16 @@ public class ControlInterface {
         while (!inventory.getSnackList().containsKey(userKey) || !(inventory.getSnackList().get(userKey).getAmountLeft()>0));
         System.out.println(inventory.dispenseSnack(userKey).getMessage());
         money.subtractMoney(inventory.getSnackList().get(userKey).getPrice(),isPurchase, userKey);
-
         purchaseMenu();
     }
 
     private void finishTransaction(){
         String[] coins = {" quarters", " dimes", " nickels"};
+        int[] changeInCoins = money.getChangeInCoins();
         money.makeChange();
         System.out.println("Your change: ");
         for (int i = 0; i< coins.length; i++){
-            System.out.println(money.getChangeInCoins()[i] + coins[i]);
+            System.out.println(changeInCoins[i] + coins[i]);
         }
         mainMenuDisplay(true);
     }
