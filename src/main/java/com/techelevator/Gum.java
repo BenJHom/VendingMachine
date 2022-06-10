@@ -3,8 +3,8 @@ package com.techelevator;
 public class Gum extends Snack{
 
 
-    public Gum(String name, int price, String subcategory, String priceAsADouble) {
-        super(name, price, subcategory, priceAsADouble);
+    public Gum(String name, String subcategory, String priceAsADouble) {
+        super(name, subcategory, priceAsADouble);
     }
 
     @Override

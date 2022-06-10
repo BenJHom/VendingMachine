@@ -20,7 +20,7 @@ public class ControlInterface {
         String userInputStr = keyboard.nextLine();
         try{
             userInput = Integer.parseInt(userInputStr);
-            if (userInput < 1 || userInput > upperBound){
+            if (userInput < 1 || userInput > upperBound+1){
                 throw new Exception();
             }
         }catch (Exception e){
@@ -33,7 +33,7 @@ public class ControlInterface {
     public void mainMenuDisplay(boolean runsProperly){
         int userInput = 0;
 
-        System.out.println("(1) Display Vending Maching Items");
+        System.out.println("(1) Display Vending Machine Items");
         System.out.println("(2) Purchase");
         System.out.println("(3) Exit");
 
@@ -52,6 +52,7 @@ public class ControlInterface {
         }else
         {
             inventory.salesReport();
+            System.out.println("Sales report generated");
         }
     }
 
@@ -60,8 +61,13 @@ public class ControlInterface {
             feedMoney(money);
         }else if(userInput == 2) {
             selectProduct();
-        }else {
+        }else if(userInput == 3) {
+            //mainMenuDisplay(true);
             finishTransaction();
+        }
+        else{
+            System.out.println("Enter 1-3");
+            userSelectorPurchaseMenu(dataValidatorInt(3));
         }
     }
 

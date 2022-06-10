@@ -41,19 +41,18 @@ public class Inventory {
     {
         String[] fileElements = fileInput.split("\\|");
         Snack newSnack = null;
-        int priceAsInt = (int)(Double.parseDouble(fileElements[2]) * 100);
         switch(fileElements[3]){
             case ("Chip"):
-                newSnack = new Chip(fileElements[1], priceAsInt, fileElements[3], fileElements[2]);
+                newSnack = new Chip(fileElements[1], fileElements[3], fileElements[2]);
                 break;
             case ("Drink"):
-                newSnack = new Drink(fileElements[1], priceAsInt, fileElements[3], fileElements[2]);
+                newSnack = new Drink(fileElements[1], fileElements[3], fileElements[2]);
                 break;
             case ("Gum"):
-                newSnack = new Gum(fileElements[1], priceAsInt, fileElements[3], fileElements[2]);
+                newSnack = new Gum(fileElements[1], fileElements[3], fileElements[2]);
                 break;
             case ("Candy"):
-                newSnack = new Candy(fileElements[1], priceAsInt, fileElements[3], fileElements[2]);
+                newSnack = new Candy(fileElements[1], fileElements[3], fileElements[2]);
                 break;
         }
         snackList.put(fileElements[0], newSnack);
