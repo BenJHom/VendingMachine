@@ -7,6 +7,7 @@ import java.util.*;
 public class Inventory {
 
     private Map<String, Snack> snackList;
+    SalesReport report = new SalesReport();
 
 
     public Inventory()
@@ -43,16 +44,16 @@ public class Inventory {
         int priceAsInt = (int)(Double.parseDouble(fileElements[2]) * 100);
         switch(fileElements[3]){
             case ("Chip"):
-                newSnack = new Chip(fileElements[1], priceAsInt, fileElements[3]);
+                newSnack = new Chip(fileElements[1], priceAsInt, fileElements[3], fileElements[2]);
                 break;
             case ("Drink"):
-                newSnack = new Drink(fileElements[1], priceAsInt, fileElements[3]);
+                newSnack = new Drink(fileElements[1], priceAsInt, fileElements[3], fileElements[2]);
                 break;
             case ("Gum"):
-                newSnack = new Gum(fileElements[1], priceAsInt, fileElements[3]);
+                newSnack = new Gum(fileElements[1], priceAsInt, fileElements[3], fileElements[2]);
                 break;
             case ("Candy"):
-                newSnack = new Candy(fileElements[1], priceAsInt, fileElements[3]);
+                newSnack = new Candy(fileElements[1], priceAsInt, fileElements[3], fileElements[2]);
                 break;
         }
         snackList.put(fileElements[0], newSnack);
@@ -61,7 +62,13 @@ public class Inventory {
     public Snack dispenseSnack(String location)
     {
         snackList.get(location).setAmountLeft();
+        report.addToReport(snackList.get(location));
         return snackList.get(location);
 
+    }
+
+    public void salesReport()
+    {
+        report.writeToReportFile();
     }
 }

@@ -9,35 +9,35 @@ public class AllSnackClassTests {
     @Test
     public void get_chip_message()
     {
-        sut = new Chip("Stackers", 2, "chips");
+        sut = new Chip("Stackers", 2, "chips", "3.05");
         Assert.assertEquals("Crunch Crunch, Yum!", sut.getMessage());
     }
 
     @Test
     public void get_drink_message()
     {
-        sut = new Drink("Stackers", 2, "chips");
+        sut = new Drink("Stackers", 2, "chips", "3.05");
         Assert.assertEquals( "Glug Glug, Yum!", sut.getMessage());
     }
 
     @Test
     public void get_candy_message()
     {
-        sut = new Candy("Stackers", 2, "chips");
+        sut = new Candy("Stackers", 2, "chips", "3.05");
         Assert.assertEquals("Munch Munch, Yum!", sut.getMessage());
     }
 
     @Test
     public void get_gum_message()
     {
-        sut = new Gum("Stackers", 2, "chips");
+        sut = new Gum("Stackers", 2, "chips", "3.05");
         Assert.assertEquals("Chew Chew, Yum!", sut.getMessage());
     }
 
     @Test
     public void get_gum_amount_left()
     {
-        sut = new Gum("Stackers", 2, "chips");
+        sut = new Gum("Stackers", 2, "chips", "3.05");
         sut.setAmountLeft();
         Assert.assertEquals(4, sut.getAmountLeft());
         sut.setAmountLeft();

@@ -5,12 +5,14 @@ public class Snack {
     private String name;
     private int price;
     private String subcategory;
+    private String priceAsAString;
 
-    public Snack(String name, int price, String subcategory) {
+    public Snack(String name, int price, String subcategory, String priceAsAString) {
         this.name = name;
         this.price = price;
         this.subcategory = subcategory;
         amountLeft = 5;
+        this.priceAsAString = priceAsAString;
     }
 
     public String getMessage()
@@ -31,8 +33,8 @@ public class Snack {
         return price;
     }
 
-    public String getSubcategory() {
-        return subcategory;
+    public String getPriceAsAString() {
+        return priceAsAString;
     }
 
     public void setAmountLeft() {

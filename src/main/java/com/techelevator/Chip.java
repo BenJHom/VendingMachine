@@ -2,8 +2,9 @@ package com.techelevator;
 
 public class Chip extends Snack{
 
-    public Chip(String name, int price, String subcategory) {
-        super(name, price, subcategory);
+
+    public Chip(String name, int price, String subcategory, String priceAsADouble) {
+        super(name, price, subcategory, priceAsADouble);
     }
 
     @Override

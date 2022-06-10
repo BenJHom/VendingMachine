@@ -47,8 +47,11 @@ public class ControlInterface {
             mainMenuDisplay(printInventoryItems());
         }else if(userInput == 2) {
             purchaseMenu();
-        }else {
+        }else if(userInput == 3) {
             exitLogFile();
+        }else
+        {
+            inventory.salesReport();
         }
     }
 
@@ -69,14 +72,16 @@ public class ControlInterface {
     private boolean printInventoryItems(){
         System.out.println("At Inventory Items");
         Set<String> keySet = inventory.getSnackList().keySet();
-        for(String key : keySet)
-        {
-            if(inventory.getSnackList().get(key).getAmountLeft() > 0) {
-                int priceInDollars = inventory.getSnackList().get(key).getPrice() / 100;
-                int priceInCents = inventory.getSnackList().get(key).getPrice() % 100;
-                System.out.println("Item Code: " + key + " >>> Item: " + inventory.getSnackList().get(key).getName() + " >>> Price: $" + priceInDollars + "." + priceInCents);
+        for(String key : keySet) {
+            if (inventory.getSnackList().get(key).getAmountLeft() > 0) {
+                System.out.println("Item Code: " + key + " >>> Amount Left: " + inventory.getSnackList().get(key).getAmountLeft() + " >>> Item: " + inventory.getSnackList().get(key).getName() + " >>> Price: $" + inventory.getSnackList().get(key).getPriceAsAString() );
+            }
+            else
+            {
+                System.out.println("Item Code: " + key + " >>> Amount Left: SOLD OUT!! >>> Item: " + inventory.getSnackList().get(key).getName() + " >>> Price: $" + inventory.getSnackList().get(key).getPriceAsAString() );
             }
         }
+
         return true;
     }
 
@@ -119,6 +124,11 @@ public class ControlInterface {
             }
         }
         while (!inventory.getSnackList().containsKey(userKey) || !(inventory.getSnackList().get(userKey).getAmountLeft()>0));
+        if(money.getCurrentAmount() < inventory.getSnackList().get(userKey).getPrice())
+        {
+            System.out.println("You do not have sufficient funds for the snack you are trying to purchase, please return to the menu and add additional money to your account");
+            purchaseMenu();
+        }
         System.out.println(inventory.dispenseSnack(userKey).getMessage());
         money.subtractMoney(inventory.getSnackList().get(userKey).getPrice(),isPurchase, userKey);
         purchaseMenu();

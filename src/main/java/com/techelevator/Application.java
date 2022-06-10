@@ -13,5 +13,8 @@ public class Application {
         for loop went through. I moved the getChangeInCoins() outside the loop and everything seems to work fine, at least at a cursory glance.
 
          */
+        //We should probably not have the file writer be in append mode, since we want the log file cleared after each run
+        //issues with mod math for .05
+        //added a string variable to the snack class that holds the initial double value
     }
 }
