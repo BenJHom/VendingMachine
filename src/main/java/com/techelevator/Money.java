@@ -19,16 +19,16 @@ public class Money {
     public int addMoney(int userMoney) {
         int userMoneyInPennies = 100 * userMoney;
         this.currentAmount = currentAmount + userMoneyInPennies;
-        logFile.logFeedMoney(userMoneyInPennies);
+        logFile.logFeedMoney(userMoneyInPennies, currentAmount);
         return currentAmount;
     }
 
     public int subtractMoney(int monetaryAmount, boolean isPurchase, String userKey){
         currentAmount = currentAmount - monetaryAmount;
         if(isPurchase){
-            logFile.logPurchase(inventory.getSnackList().get(userKey), userKey);
+            logFile.logPurchase(inventory.getSnackList().get(userKey), userKey, currentAmount);
         }else{
-            logFile.logChangeMade(monetaryAmount);
+            logFile.logChangeMade(monetaryAmount, currentAmount);
         }
         return currentAmount;
     }
@@ -39,7 +39,7 @@ public class Money {
 
         for (int i = 0; i < changeInCoins.length; i++){
             changeInCoins[i] = modifiedCurrent/coinValues[i];
-            modifiedCurrent = currentAmount%coinValues[i];
+            modifiedCurrent = modifiedCurrent%coinValues[i];
         }
 
         subtractMoney(currentAmount, isPurchase, "");

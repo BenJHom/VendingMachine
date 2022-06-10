@@ -10,7 +10,7 @@ public class ControlInterface {
     public Money money;
 
     public ControlInterface(){
-        logFile = new LogFile(money);
+        logFile = new LogFile();
         money = new Money(logFile,inventory);
     }
 
@@ -101,6 +101,7 @@ public class ControlInterface {
 
     private String exitLogFile(){
         String logFilePath = "";
+        logFile.endStream();
         System.out.println("At Exit");
         return logFilePath;
     }
