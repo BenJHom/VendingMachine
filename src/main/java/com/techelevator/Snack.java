@@ -7,9 +7,11 @@ public class Snack {
     private String subcategory;
     private String priceAsAString;
 
-    public Snack(String name, int price, String subcategory, String priceAsAString) {
+    /*
+
+     */
+    public Snack(String name, String subcategory, String priceAsAString) {
         this.name = name;
-        this.price = price;
         this.subcategory = subcategory;
         amountLeft = 5;
         this.priceAsAString = priceAsAString;
@@ -30,6 +32,7 @@ public class Snack {
     }
 
     public int getPrice() {
+        price = (int)(Double.parseDouble(priceAsAString) * 100);
         return price;
     }
 
