@@ -1,5 +1,9 @@
 package com.techelevator;
 
+    /*
+    Snack subclass, purely meant to override the getMessage() method
+     */
+
 public class Chip extends Snack{
 
 

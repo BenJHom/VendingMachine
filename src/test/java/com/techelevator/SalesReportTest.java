@@ -13,6 +13,9 @@ import java.util.Scanner;
 public class SalesReportTest {
 
     private SalesReport sut;
+    private String snack1 = "Stickers";
+    private String snack2 = "Sizzlers";
+    private String snack3 = "Stackers";
     @Before
     public void setup()
     {
@@ -22,21 +25,21 @@ public class SalesReportTest {
     public void test_for_accurate_counts()
     {
         List<String> reportData = new ArrayList<>();
-        sut.addToReport(new Candy("Stackers",  "chips", "3.05"));
-        sut.addToReport(new Candy("Stackers",  "chips", "3.05"));
-        sut.addToReport(new Candy("Stackers",  "chips", "3.05"));
+        sut.addToReport(new Candy(snack3,  "chips", "3.05"));
+        sut.addToReport(new Candy(snack3,  "chips", "3.05"));
+        sut.addToReport(new Candy(snack3,  "chips", "3.05"));
 
-        sut.addToReport(new Candy("Stickers",  "chips", "3.05"));
-        sut.addToReport(new Candy("Stickers",  "chips", "3.05"));
-        sut.addToReport(new Candy("Stickers",  "chips", "3.05"));
-        sut.addToReport(new Candy("Stickers",  "chips", "3.05"));
+        sut.addToReport(new Candy(snack2,  "chips", "3.05"));
+        sut.addToReport(new Candy(snack2,  "chips", "3.05"));
+        sut.addToReport(new Candy(snack2,  "chips", "3.05"));
+        sut.addToReport(new Candy(snack2,  "chips", "3.05"));
 
-        sut.addToReport(new Candy("Sizzlers",  "chips", "3.05"));
-        sut.addToReport(new Candy("Sizzlers",  "chips", "3.05"));
-        sut.addToReport(new Candy("Sizzlers",  "chips", "3.05"));
-        sut.addToReport(new Candy("Sizzlers",  "chips", "3.05"));
-        sut.addToReport(new Candy("Sizzlers",  "chips", "3.05"));
-        sut.addToReport(new Candy("Sizzlers",  "chips", "3.05"));
+        sut.addToReport(new Candy(snack1,  "chips", "3.05"));
+        sut.addToReport(new Candy(snack1,  "chips", "3.05"));
+        sut.addToReport(new Candy(snack1,  "chips", "3.05"));
+        sut.addToReport(new Candy(snack1,  "chips", "3.05"));
+        sut.addToReport(new Candy(snack1,  "chips", "3.05"));
+        sut.addToReport(new Candy(snack1,  "chips", "3.05"));
         sut.writeToReportFile();
 
         try(Scanner reader = new Scanner(new File(sut.getDateTime()))) {
@@ -54,15 +57,15 @@ public class SalesReportTest {
         for(String string : reportData)
         {
             String[] splitData = string.split("\\|");
-            if(splitData[0].trim().equalsIgnoreCase("Stackers"))
+            if(splitData[0].trim().equalsIgnoreCase(snack3))
             {
                 Assert.assertEquals("3", splitData[1].trim());
             }
-            if(splitData[0].trim().equalsIgnoreCase("Stickers"))
+            if(splitData[0].trim().equalsIgnoreCase(snack2))
             {
                 Assert.assertEquals("4", splitData[1].trim());
             }
-            if(splitData[0].trim().equalsIgnoreCase("Sizzlers"))
+            if(splitData[0].trim().equalsIgnoreCase(snack1))
             {
                 Assert.assertEquals("6", splitData[1].trim());
             }
@@ -72,21 +75,21 @@ public class SalesReportTest {
     @Test
     public void test_for_accurate_totals1() {
         List<String> reportData = new ArrayList<>();
-        sut.addToReport(new Candy("Stackers",  "chips", "3.05"));
-        sut.addToReport(new Candy("Stackers",  "chips", "3.05"));
-        sut.addToReport(new Candy("Stackers",  "chips", "3.05"));
+        sut.addToReport(new Candy(snack1,  "chips", "3.05"));
+        sut.addToReport(new Candy(snack1,  "chips", "3.05"));
+        sut.addToReport(new Candy(snack1,  "chips", "3.05"));
 
-        sut.addToReport(new Candy("Stickers",  "chips", "3.05"));
-        sut.addToReport(new Candy("Stickers",  "chips", "3.05"));
-        sut.addToReport(new Candy("Stickers",  "chips", "3.05"));
-        sut.addToReport(new Candy("Stickers",  "chips", "3.05"));
+        sut.addToReport(new Candy(snack2,  "chips", "3.05"));
+        sut.addToReport(new Candy(snack2,  "chips", "3.05"));
+        sut.addToReport(new Candy(snack2,  "chips", "3.05"));
+        sut.addToReport(new Candy(snack2,  "chips", "3.05"));
 
-        sut.addToReport(new Candy("Sizzlers",  "chips", "3.05"));
-        sut.addToReport(new Candy("Sizzlers",  "chips", "3.05"));
-        sut.addToReport(new Candy("Sizzlers",  "chips", "3.05"));
-        sut.addToReport(new Candy("Sizzlers",  "chips", "3.05"));
-        sut.addToReport(new Candy("Sizzlers",  "chips", "3.05"));
-        sut.addToReport(new Candy("Sizzlers",  "chips", "3.05"));
+        sut.addToReport(new Candy(snack3,  "chips", "3.05"));
+        sut.addToReport(new Candy(snack3,  "chips", "3.05"));
+        sut.addToReport(new Candy(snack3,  "chips", "3.05"));
+        sut.addToReport(new Candy(snack3,  "chips", "3.05"));
+        sut.addToReport(new Candy(snack3,  "chips", "3.05"));
+        sut.addToReport(new Candy(snack3,  "chips", "3.05"));
         sut.writeToReportFile();
 
         try (Scanner reader = new Scanner(new File(sut.getDateTime()))) {
@@ -107,9 +110,9 @@ public class SalesReportTest {
     @Test
     public void test_for_accurate_totals() {
         List<String> reportData = new ArrayList<>();
-        sut.addToReport(new Candy("Stackers", "chips", "3.05"));
-        sut.addToReport(new Candy("Stackers",  "chips", "3.05"));
-        sut.addToReport(new Candy("Stackers",  "chips", "3.05"));
+        sut.addToReport(new Candy(snack1, "chips", "3.05"));
+        sut.addToReport(new Candy(snack1,  "chips", "3.05"));
+        sut.addToReport(new Candy(snack1,  "chips", "3.05"));
 
         sut.writeToReportFile();
 
@@ -132,17 +135,18 @@ public class SalesReportTest {
     public void test_for_accurate_totals2() {
         List<String> reportData = new ArrayList<>();
 
-        sut.addToReport(new Candy("Stickers",  "chips", "3.05"));
-        sut.addToReport(new Candy("Stickers",  "chips", "3.05"));
-        sut.addToReport(new Candy("Stickers",  "chips", "3.05"));
-        sut.addToReport(new Candy("Stickers",  "chips", "3.05"));
 
-        sut.addToReport(new Candy("Sizzlers",  "chips", "3.05"));
-        sut.addToReport(new Candy("Sizzlers",  "chips", "3.05"));
-        sut.addToReport(new Candy("Sizzlers",  "chips", "3.05"));
-        sut.addToReport(new Candy("Sizzlers",  "chips", "3.05"));
-        sut.addToReport(new Candy("Sizzlers",  "chips", "3.05"));
-        sut.addToReport(new Candy("Sizzlers",  "chips", "3.05"));
+        sut.addToReport(new Candy(snack1,  "chips", "3.05"));
+        sut.addToReport(new Candy(snack1,  "chips", "3.05"));
+        sut.addToReport(new Candy(snack1,  "chips", "3.05"));
+        sut.addToReport(new Candy(snack1,  "chips", "3.05"));
+
+        sut.addToReport(new Candy(snack2,  "chips", "3.05"));
+        sut.addToReport(new Candy(snack2,  "chips", "3.05"));
+        sut.addToReport(new Candy(snack2,  "chips", "3.05"));
+        sut.addToReport(new Candy(snack2,  "chips", "3.05"));
+        sut.addToReport(new Candy(snack2,  "chips", "3.05"));
+        sut.addToReport(new Candy(snack2,  "chips", "3.05"));
         sut.writeToReportFile();
 
         try (Scanner reader = new Scanner(new File(sut.getDateTime()))) {

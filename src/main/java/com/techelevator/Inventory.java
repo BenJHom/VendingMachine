@@ -4,6 +4,15 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
 
+/*
+    -This class is resposible for recording the inventory of the vending machine. It keeps a Map<String, Snack> where the key is the item code
+    corresponding to each location, and the value is the actual snack object. The constructor imports the data from the file, so upon initializing
+    an inventory object the data is already read from the file and stored into the map variable
+    -This class is responsible for creating each snack object in the putImportsInMap() method
+    -I decided to keep the amount left in the snack object, even though it is more a property of the inventory, than of an individual snack for ease of use.
+    Keeping the amount tied to the snack object means I don't have to make and manipulate duplicate maps to know how many products are left in each location.
+    -This class also initializes the SalesReport class.
+ */
 public class Inventory {
 
     private Map<String, Snack> snackList;

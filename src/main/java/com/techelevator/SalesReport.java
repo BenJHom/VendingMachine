@@ -6,16 +6,19 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
+/*
+    -This class is responsible for keeping track of sales of individual items sold. It uses a Map<Snack, Integer> where the key
+    is the snack object and the value is the amount sold. It was important to make the key for the map the snack object in order
+    to keep the pricing information, having String values would not have retained that information.
+    -This class updates the map each time the vending machine dispenses a snack, and when the vending machine is shut down, this class
+    creates a file if the user selects a hidden input
+ */
 public class SalesReport {
 
 
     private Map<Snack, Integer> report = new HashMap<>();
     int total;
     private String dateTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("MM_dd_yyyy h_m_ss a"))+" sales report.txt";
-
-    public Map<Snack, Integer> getReport() {
-        return report;
-    }
 
     public void addToReport(Snack snack)
     {
@@ -49,7 +52,6 @@ public class SalesReport {
         {
             total += snack.getPrice() * report.get(snack);
         }
-
         return total;
     }
 

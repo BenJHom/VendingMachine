@@ -109,7 +109,7 @@ public class ControlInterface {
     //PURCHASE MENU POST SELECTOR
     private void feedMoney(Money money){
         System.out.println("Please enter a monetary amount: ");
-        int userMoney = dataValidatorInt(Integer.MAX_VALUE/100);
+        int userMoney = dataValidatorInt((Integer.MAX_VALUE/100)-1);
         money.addMoney(userMoney);
         purchaseMenu();
     }

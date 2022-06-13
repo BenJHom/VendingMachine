@@ -1,15 +1,16 @@
 package com.techelevator;
 
-public class Snack {
+/*
+    -Snack parent class. Child classes are Chip, Candy, Drink, and Gum. Those classes will override the getMessage method
+    to return a string that corresponds to each category.
+ */
+public abstract class Snack {
     private int amountLeft;
     private String name;
     private int price;
     private String subcategory;
     private String priceAsAString;
 
-    /*
-
-     */
     public Snack(String name, String subcategory, String priceAsAString) {
         this.name = name;
         this.subcategory = subcategory;
@@ -30,6 +31,8 @@ public class Snack {
     public String getName() {
         return name;
     }
+
+    //-This method changes the price from a string to an int. All the prices are in pennies, so, $3.05 will return 305
 
     public int getPrice() {
         price = (int)(Double.parseDouble(priceAsAString) * 100);
