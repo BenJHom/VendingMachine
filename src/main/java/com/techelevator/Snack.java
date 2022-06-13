@@ -1,6 +1,6 @@
 package com.techelevator;
 
-public class Snack {
+public abstract class Snack {
     private int amountLeft;
     private String name;
     private int price;
