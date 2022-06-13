@@ -1,8 +1,6 @@
 package com.techelevator;
 
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
@@ -26,7 +24,6 @@ public class LogFile {
     public String formatMoney(int monetaryAmount){
         int ones = monetaryAmount/100;
         int cents = monetaryAmount%100;
-        int centsOnes = monetaryAmount%10;
         return "$" + ones + "." + (cents < 10 ? 0 : "") + cents;
     }
 
@@ -54,9 +51,8 @@ public class LogFile {
         return logOfChangeMade;
     }
 
-    private void logWrite(String logString) {
+    public void logWrite(String logString) {
             fileLogger.println(logString);
-
     }
 
     public boolean endStream(){

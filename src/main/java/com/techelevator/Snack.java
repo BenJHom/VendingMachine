@@ -1,9 +1,12 @@
 package com.techelevator;
 
+<<<<<<< HEAD
 /*
     -Snack parent class. Child classes are Chip, Candy, Drink, and Gum. Those classes will override the getMessage method
     to return a string that corresponds to each category.
  */
+=======
+>>>>>>> b7650901655802913dd5222d8a2e55eb6c34da82
 public abstract class Snack {
     private int amountLeft;
     private String name;
