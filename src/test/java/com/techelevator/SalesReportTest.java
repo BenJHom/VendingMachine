@@ -25,14 +25,20 @@ public class SalesReportTest {
     public void test_for_accurate_counts()
     {
         List<String> reportData = new ArrayList<>();
+        int index = 0;
         sut.addToReport(new Candy(snack3,  "chips", "3.05"));
         sut.addToReport(new Candy(snack3,  "chips", "3.05"));
         sut.addToReport(new Candy(snack3,  "chips", "3.05"));
+        sut.addToReport(new Candy(snack3,  "chips", "6.10"));
+        sut.addToReport(new Candy(snack3,  "chips", "6.10"));
+
 
         sut.addToReport(new Candy(snack2,  "chips", "3.05"));
         sut.addToReport(new Candy(snack2,  "chips", "3.05"));
         sut.addToReport(new Candy(snack2,  "chips", "3.05"));
         sut.addToReport(new Candy(snack2,  "chips", "3.05"));
+        sut.addToReport(new Candy(snack2,  "drinks", "3.05"));
+        sut.addToReport(new Candy(snack2,  "drinks", "3.05"));
 
         sut.addToReport(new Candy(snack1,  "chips", "3.05"));
         sut.addToReport(new Candy(snack1,  "chips", "3.05"));
@@ -59,12 +65,27 @@ public class SalesReportTest {
             String[] splitData = string.split("\\|");
             if(splitData[0].trim().equalsIgnoreCase(snack3))
             {
-                Assert.assertEquals("3", splitData[1].trim());
+                if(splitData[1].trim().equals("3") || splitData[1].trim().equals("2"))
+                {
+                    Assert.assertTrue(true);
+                }
+                else
+                {
+                    Assert.fail();
+
+                }
             }
             if(splitData[0].trim().equalsIgnoreCase(snack2))
             {
-                Assert.assertEquals("4", splitData[1].trim());
-            }
+                if(splitData[1].trim().equals("4") || splitData[1].trim().equals("2"))
+                {
+                    Assert.assertTrue(true);
+                }
+                else
+                {
+                    Assert.fail();
+
+                }            }
             if(splitData[0].trim().equalsIgnoreCase(snack1))
             {
                 Assert.assertEquals("6", splitData[1].trim());
@@ -93,8 +114,11 @@ public class SalesReportTest {
         sut.writeToReportFile();
 
         try (Scanner reader = new Scanner(new File(sut.getDateTime()))) {
+            int index = 0;
             while (reader.hasNextLine()) {
                 reportData.add(reader.nextLine());
+                //System.out.println(reportData.get(index));
+                //index++;
                 if (reportData.get(reportData.size() - 1).contains("|")) {
                     reportData.remove(reportData.size() - 1);
                 }

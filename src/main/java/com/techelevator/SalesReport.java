@@ -22,19 +22,11 @@ public class SalesReport {
 
     public void addToReport(Snack snack)
     {
-        boolean isInList = false;
-        Set<Snack> snacks = report.keySet();
-        for(Snack snackers : snacks)
+        if(report.containsKey(snack))
         {
-            if(snackers.getName().equalsIgnoreCase(snack.getName()))
-            {
-                int amount = report.get(snackers) + 1;
-                report.replace(snackers, amount);
-                isInList = true;
-                break;
-            }
+            report.put(snack, report.get(snack)+1);
         }
-        if(!isInList)
+        else
         {
             report.put(snack, 1);
         }

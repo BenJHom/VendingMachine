@@ -1,0 +1,7 @@
+Sizzlers | 4
+Stackers | 3
+Stackers | 2
+Sizzlers | 2
+Stickers | 6
+
+**Total Sales**: $57.95

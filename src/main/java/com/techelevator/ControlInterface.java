@@ -53,6 +53,7 @@ public class ControlInterface {
         {
             inventory.salesReport();
             System.out.println("Sales report generated");
+            exitLogFile();
         }
     }
 
@@ -62,7 +63,6 @@ public class ControlInterface {
         }else if(userInput == 2) {
             selectProduct();
         }else if(userInput == 3) {
-            //mainMenuDisplay(true);
             finishTransaction();
         }
         else{
@@ -116,6 +116,7 @@ public class ControlInterface {
 
     private void selectProduct(){
         boolean isPurchase = true;
+        boolean overdraft = false;
         printInventoryItems();
         String userKey;
         do {
@@ -133,10 +134,15 @@ public class ControlInterface {
         {
             System.out.println("You do not have sufficient funds for the snack you are trying to purchase, please return to the menu and add additional money to your account");
             purchaseMenu();
+            overdraft = true;
         }
-        System.out.println(inventory.dispenseSnack(userKey).getMessage());
-        money.subtractMoney(inventory.getSnackList().get(userKey).getPrice(),isPurchase, userKey);
-        purchaseMenu();
+        if(!overdraft)
+        {
+            System.out.println(inventory.dispenseSnack(userKey).getMessage());
+            money.subtractMoney(inventory.getSnackList().get(userKey).getPrice(),isPurchase, userKey);
+            purchaseMenu();
+        }
+
     }
 
     private void finishTransaction(){
