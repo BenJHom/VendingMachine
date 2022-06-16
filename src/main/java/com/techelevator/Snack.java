@@ -2,8 +2,7 @@ package com.techelevator;
 
 /*
     -Snack parent class. Child classes are Chip, Candy, Drink, and Gum. Those classes will override the getMessage method
-    to return a string that corresponds to each category. Overrode the both the equals and hashcode methods so that the
-    Snack object will be compatible with HashMaps
+    to return a string that corresponds to each category.
  */
 
 import java.util.Objects;
@@ -57,7 +56,8 @@ public abstract class Snack {
             amountLeft--;
         }
     }
-
+    //Overrode the both the equals and hashcode methods so that the
+    //    Snack object will be compatible with HashMaps
     @Override
     public boolean equals(Object o) {
         Snack snack = (Snack) o;
@@ -72,12 +72,10 @@ public abstract class Snack {
             }
         }
         return false;
-        //return name.equals(snack.getName());
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(name, subcategory);
-        //return name.hashCode();
     }
 }

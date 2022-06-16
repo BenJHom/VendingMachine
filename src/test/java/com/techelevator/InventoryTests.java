@@ -46,7 +46,8 @@ public class InventoryTests {
     public void test_dispense_snack()
     {
         String input = "C1";
-        sut.dispenseSnack(input);
+        Snack snack = sut.dispenseSnack(input);
+        Assert.assertEquals("Cola", snack.getName());
         Assert.assertEquals(4, sut.getSnackList().get(input).getAmountLeft());
         sut.dispenseSnack(input);
         Assert.assertEquals(3, sut.getSnackList().get(input).getAmountLeft());
